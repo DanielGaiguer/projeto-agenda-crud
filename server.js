@@ -12,7 +12,7 @@ mongoose.connect(process.env.CONNECTIONSTRING, {
   })
   .catch(e => console.log(e));
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
