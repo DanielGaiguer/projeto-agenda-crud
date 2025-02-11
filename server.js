@@ -11,7 +11,7 @@ mongoose.connect(process.env.CONNECTIONSTRING, {
     app.emit('pronto');
   })
   .catch(e => console.log(e));
-const session = require('express-session');
+const session = require('express-session'); 
 const MongoStore = require('connect-mongo').default; 
 const flash = require('connect-flash');
 const routes = require('./routes');
