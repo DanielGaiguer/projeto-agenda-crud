@@ -6,21 +6,23 @@ const ContatoSchema = new mongoose.Schema({
   sobrenome: { type: String, required: false, default: '' },
   email: { type: String, required: false,  default: ''},
   telefone: { type: String, required: false,  default: ''},
+  usuario: {type: String, required: true}, 
   criadoEm: { type: Date,  default: Date.now}
 });
 
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
 
-function Contato(body) {
+function Contato(body, user) {
   this.body = body
   this.errors = []
-  this.contato = null
+  this.contato = null 
+  this.user = user 
 }
 
 
-Contato.prototype.register = async function() {
+Contato.prototype.register = async function() { 
   this.valida()
-  if(this.errors.length > 0) return
+  if(this.errors.length > 0) return 
   this.contato = await ContatoModel.create(this.body)
 
 }
@@ -42,11 +44,12 @@ Contato.prototype.cleanUp = function() {
     }
   }
   
-  this.body = {
+  this.body = { 
     nome: this.body.nome,
     sobrenome: this.body.sobrenome,
     email: this.body.email,
-    telefone: this.body.telefone
+    telefone: this.body.telefone,
+    usuario: this.user 
   }
 }
 
